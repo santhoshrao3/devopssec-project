@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+
+<section class="table-components">
+    <div class="container-fluid">
+      <!-- ========== title-wrapper start ========== -->
+      <div class="title-wrapper pt-30">
+        <div class="row align-items-center">
+          <div class="col-md-6">
+            <div class="title mb-30">
+              <h2>Subjects</h2>
+            </div>
+          </div>
+          <!-- end col -->
+          <div class="col-md-6">
+            <div class="breadcrumb-wrapper mb-30">
+              <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item">
+                    <a href="#0">Subjects</a>
+                  </li>
+                  <li class="breadcrumb-item active" aria-current="page">
+                    Subjects
+                  </li>
+                </ol>
+              </nav>
+            </div>
+          </div>
+          <!-- end col -->
+        </div>
+        <!-- end row -->
+      </div>
+      <!-- ========== title-wrapper end ========== -->
+  
+      <!-- ========== tables-wrapper start ========== -->
+      <div class="tables-wrapper">
+        <div class="row">
+          <div class="col-lg-12">
+            <div class="card-style mb-30">
+              <h6 class="mb-10">
+                   <a class="btn btn-primary"  href="/add-timetable_management" role="button">+ Add Table Management</a>
+                
+            </h6>
+              <div class="table-responsive">
+                
+                <table class="table">
+                  <thead>
+                    <tr>
+                      <!-- <th data-type="intiger"><h6>#</h6></th> -->
+                      <th><h6>Subject Name</h6></th>
+                      <th><h6>start_time</h6></th>
+                      <th><h6>end_time</h6></th>
+                      <th><h6>day</h6></th>
+                      <th><h6>date</h6></th>
+                        <th><h6>Action</h6></th>
+
+                      
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for s in  tables %}
+                    <tr>
+                    
+                        <td><p>{{ s.subject_id }}</p></td>
+                        <td><p>{{ s.start_time }}</p></td>
+                        <td><p>{{ s.end_time }}</p></td>
+                        <td><p>{{ s.day }}</p></td>
+                        <td><p>{{ s.date }}</p></td>
+                        <td><p>
+                            <a href="/update-timetable_management/{{s.id}}">Edit</a>
+                        </p></td>
+                        
+                    </tr>
+                {% endfor %}
+                  </tbody>
+                </table>
+               
+              </div>
+            </div>
+            <!-- end card -->
+          </div>
+          <!-- end col -->
+        </div>
+        <!-- end row -->
+      </div>
+      <!-- ========== tables-wrapper end ========== -->
+    </div>
+    <!-- end container -->
+  </section>
+
+
+
+
+{% endblock %}

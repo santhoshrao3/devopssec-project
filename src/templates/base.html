@@ -1,0 +1,825 @@
+{% load static %}web/
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="shortcut icon"
+      href="assets/images/favicon.svg"
+      type="image/x-icon"
+    />
+    <title>PlainAdmin Demo | Bootstrap 5 Admin Template</title>
+
+    <!-- JQuery cdn -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+    <!-- ========== All CSS files linkup ========= -->
+    <link rel="stylesheet" href="{% static  'web/assets/css/bootstrap.min.css' %}" />
+    <link rel="stylesheet" href="{% static  'web/assets/css/LineIcons.css' %}" />
+    <link rel="stylesheet" href="{% static  'web/assets/css/quill/bubble.css' %}" />
+    <link rel="stylesheet" href="{% static  'web/assets/css/quill/snow.css' %}" />
+    <link rel="stylesheet" href="{% static  'web/assets/css/fullcalendar.css' %}" />
+    <link rel="stylesheet" href="{% static  'web/assets/css/morris.css' %}" />
+    <link rel="stylesheet" href="{% static  'web/assets/css/vanilla-dataTables.min.css' %}" />
+    <link rel="stylesheet" href="{% static  'web/assets/css/main.css' %}" />
+
+    <!-- HTMX -->
+    <script src="https://unpkg.com/htmx.org@1.6.0"></script>
+  </head>
+  <body>
+    <!-- ======== sidebar-nav start =========== -->
+    <aside class="sidebar-nav-wrapper">
+      <div class="navbar-logo">
+        <a href="/">
+          <img src="{% static  'web/assets/images/logo/logo-2.svg' %}" alt="logo" />
+        </a>
+      </div>
+      <nav class="sidebar-nav">
+        <ul>
+          <!-- Dashborad -->
+         
+          <!-- Auth -->
+        
+          <!-- Course -->
+          <li class="nav-item">
+            <a href="/all-students">
+              <span class="icon">
+                <svg
+                  width="22"
+                  height="22"
+                  viewBox="0 0 22 22"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M11.0001 3.66675C11.9725 3.66675 12.9052 4.05306 13.5928 4.74069C14.2804 5.42832 14.6667 6.36095 14.6667 7.33341C14.6667 8.30587 14.2804 9.23851 13.5928 9.92614C12.9052 10.6138 11.9725 11.0001 11.0001 11.0001C10.0276 11.0001 9.09499 10.6138 8.40736 9.92614C7.71972 9.23851 7.33341 8.30587 7.33341 7.33341C7.33341 6.36095 7.71972 5.42832 8.40736 4.74069C9.09499 4.05306 10.0276 3.66675 11.0001 3.66675ZM11.0001 5.50008C10.5139 5.50008 10.0475 5.69324 9.70372 6.03705C9.3599 6.38087 9.16675 6.84718 9.16675 7.33341C9.16675 7.81964 9.3599 8.28596 9.70372 8.62978C10.0475 8.97359 10.5139 9.16675 11.0001 9.16675C11.4863 9.16675 11.9526 8.97359 12.2964 8.62978C12.6403 8.28596 12.8334 7.81964 12.8334 7.33341C12.8334 6.84718 12.6403 6.38087 12.2964 6.03705C11.9526 5.69324 11.4863 5.50008 11.0001 5.50008ZM11.0001 11.9167C13.4476 11.9167 18.3334 13.1359 18.3334 15.5834V18.3334H3.66675V15.5834C3.66675 13.1359 8.55258 11.9167 11.0001 11.9167ZM11.0001 13.6584C8.27758 13.6584 5.40841 14.9967 5.40841 15.5834V16.5917H16.5917V15.5834C16.5917 14.9967 13.7226 13.6584 11.0001 13.6584Z"
+                  />
+                </svg>
+              </span>
+              <span class="text">
+               Students
+              </span>
+            </a>
+          </li>
+
+      
+
+      
+       
+          <li class="nav-item">
+            <a href="/all-courses">
+              <span class="icon">
+                <svg
+                  width="22"
+                  height="22"
+                  viewBox="0 0 22 22"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M11.0001 3.66675C11.9725 3.66675 12.9052 4.05306 13.5928 4.74069C14.2804 5.42832 14.6667 6.36095 14.6667 7.33341C14.6667 8.30587 14.2804 9.23851 13.5928 9.92614C12.9052 10.6138 11.9725 11.0001 11.0001 11.0001C10.0276 11.0001 9.09499 10.6138 8.40736 9.92614C7.71972 9.23851 7.33341 8.30587 7.33341 7.33341C7.33341 6.36095 7.71972 5.42832 8.40736 4.74069C9.09499 4.05306 10.0276 3.66675 11.0001 3.66675ZM11.0001 5.50008C10.5139 5.50008 10.0475 5.69324 9.70372 6.03705C9.3599 6.38087 9.16675 6.84718 9.16675 7.33341C9.16675 7.81964 9.3599 8.28596 9.70372 8.62978C10.0475 8.97359 10.5139 9.16675 11.0001 9.16675C11.4863 9.16675 11.9526 8.97359 12.2964 8.62978C12.6403 8.28596 12.8334 7.81964 12.8334 7.33341C12.8334 6.84718 12.6403 6.38087 12.2964 6.03705C11.9526 5.69324 11.4863 5.50008 11.0001 5.50008ZM11.0001 11.9167C13.4476 11.9167 18.3334 13.1359 18.3334 15.5834V18.3334H3.66675V15.5834C3.66675 13.1359 8.55258 11.9167 11.0001 11.9167ZM11.0001 13.6584C8.27758 13.6584 5.40841 14.9967 5.40841 15.5834V16.5917H16.5917V15.5834C16.5917 14.9967 13.7226 13.6584 11.0001 13.6584Z"
+                  />
+                </svg>
+              </span>
+              <span class="text">
+                Courses
+              </span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/all-subjects">
+              <span class="icon">
+                <svg
+                  width="22"
+                  height="22"
+                  viewBox="0 0 22 22"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M11.0001 3.66675C11.9725 3.66675 12.9052 4.05306 13.5928 4.74069C14.2804 5.42832 14.6667 6.36095 14.6667 7.33341C14.6667 8.30587 14.2804 9.23851 13.5928 9.92614C12.9052 10.6138 11.9725 11.0001 11.0001 11.0001C10.0276 11.0001 9.09499 10.6138 8.40736 9.92614C7.71972 9.23851 7.33341 8.30587 7.33341 7.33341C7.33341 6.36095 7.71972 5.42832 8.40736 4.74069C9.09499 4.05306 10.0276 3.66675 11.0001 3.66675ZM11.0001 5.50008C10.5139 5.50008 10.0475 5.69324 9.70372 6.03705C9.3599 6.38087 9.16675 6.84718 9.16675 7.33341C9.16675 7.81964 9.3599 8.28596 9.70372 8.62978C10.0475 8.97359 10.5139 9.16675 11.0001 9.16675C11.4863 9.16675 11.9526 8.97359 12.2964 8.62978C12.6403 8.28596 12.8334 7.81964 12.8334 7.33341C12.8334 6.84718 12.6403 6.38087 12.2964 6.03705C11.9526 5.69324 11.4863 5.50008 11.0001 5.50008ZM11.0001 11.9167C13.4476 11.9167 18.3334 13.1359 18.3334 15.5834V18.3334H3.66675V15.5834C3.66675 13.1359 8.55258 11.9167 11.0001 11.9167ZM11.0001 13.6584C8.27758 13.6584 5.40841 14.9967 5.40841 15.5834V16.5917H16.5917V15.5834C16.5917 14.9967 13.7226 13.6584 11.0001 13.6584Z"
+                  />
+                </svg>
+              </span>
+              <span class="text">
+                Subjects
+              </span>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a href="/all-timetable_management">
+              <span class="icon">
+                <svg
+                  width="22"
+                  height="22"
+                  viewBox="0 0 22 22"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M11.0001 3.66675C11.9725 3.66675 12.9052 4.05306 13.5928 4.74069C14.2804 5.42832 14.6667 6.36095 14.6667 7.33341C14.6667 8.30587 14.2804 9.23851 13.5928 9.92614C12.9052 10.6138 11.9725 11.0001 11.0001 11.0001C10.0276 11.0001 9.09499 10.6138 8.40736 9.92614C7.71972 9.23851 7.33341 8.30587 7.33341 7.33341C7.33341 6.36095 7.71972 5.42832 8.40736 4.74069C9.09499 4.05306 10.0276 3.66675 11.0001 3.66675ZM11.0001 5.50008C10.5139 5.50008 10.0475 5.69324 9.70372 6.03705C9.3599 6.38087 9.16675 6.84718 9.16675 7.33341C9.16675 7.81964 9.3599 8.28596 9.70372 8.62978C10.0475 8.97359 10.5139 9.16675 11.0001 9.16675C11.4863 9.16675 11.9526 8.97359 12.2964 8.62978C12.6403 8.28596 12.8334 7.81964 12.8334 7.33341C12.8334 6.84718 12.6403 6.38087 12.2964 6.03705C11.9526 5.69324 11.4863 5.50008 11.0001 5.50008ZM11.0001 11.9167C13.4476 11.9167 18.3334 13.1359 18.3334 15.5834V18.3334H3.66675V15.5834C3.66675 13.1359 8.55258 11.9167 11.0001 11.9167ZM11.0001 13.6584C8.27758 13.6584 5.40841 14.9967 5.40841 15.5834V16.5917H16.5917V15.5834C16.5917 14.9967 13.7226 13.6584 11.0001 13.6584Z"
+                  />
+                </svg>
+              </span>
+              <span class="text">
+                Time Table Management
+              </span>
+            </a>
+          </li>
+          <!-- Lurnify Members -->
+
+
+
+       
+        </ul>
+      </nav>
+    
+    </aside>
+    <div class="overlay"></div>
+    <!-- ======== sidebar-nav end =========== -->
+
+    <!-- ======== main-wrapper start =========== -->
+    <main class="main-wrapper">
+      <!-- ========== header start ========== -->
+      <header class="header">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-lg-5 col-md-5 col-6">
+              <div class="header-left d-flex align-items-center">
+                <div class="menu-toggle-btn mr-20">
+                  <button
+                    id="menu-toggle"
+                    class="main-btn primary-btn btn-hover"
+                  >
+                    <i class="lni lni-chevron-left me-2"></i> Menu
+                  </button>
+                </div>
+                <div class="header-search d-none d-md-flex">
+                  <form action="#">
+                    <input type="text" placeholder="Search..." />
+                    <button><i class="lni lni-search-alt"></i></button>
+                  </form>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-7 col-md-7 col-6">
+              <div class="header-right">
+                <!-- notification start -->
+           
+                <!-- notification end -->
+                <!-- message start -->
+            
+                <!-- message end -->
+                <!-- filter start -->
+                <div class="filter-box ml-15 d-none d-md-flex">
+                  <button class="" type="button" id="filter">
+                    <i class="lni lni-funnel"></i>
+                  </button>
+                </div>
+                <!-- filter end -->
+                <!-- profile start -->
+                <div class="profile-box ml-15">
+                  <button
+                    class="dropdown-toggle bg-transparent border-0"
+                    type="button"
+                    id="profile"
+                    data-bs-toggle="dropdown"
+                    aria-expanded="false"
+                  >
+                    <div class="profile-info">
+                      <div class="info">
+                        <h6>{{request.user}}</h6>
+                        <div class="image">
+                          <img
+                            src="{% static 'web/assets/images/profile/profile-1.png' %}"
+                            alt=""
+                          />
+                          <span class="status"></span>
+                        </div>
+                      </div>
+                    </div>
+                    <i class="lni lni-chevron-down"></i>
+                  </button>
+                  <ul
+                    class="dropdown-menu dropdown-menu-end"
+                    aria-labelledby="profile"
+                  >
+                   
+                   
+                    <li>
+                      <a href="/logout"> <i class="lni lni-exit"></i> Sign Out </a>
+                    </li>
+                  </ul>
+                </div>
+                <!-- profile end -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </header>
+      <style>
+        .msg{
+            color:green;
+            font-size:25px;
+            background-color:white;
+            border-radius:10px;
+            padding:10px;
+            margin-top:10px;
+            margin-bottom:10px;
+            text-align: center;
+    
+        }
+    </style>
+    {% if messages %}
+    {% for message in messages %}
+        <div class="msg">
+            {{ message }}
+        </div>
+    {% endfor %}
+    {% endif %}
+      <!-- ========== header end ========== -->
+
+      <!-- ========== section start ========== -->
+      {% block content %}
+      {% endblock content %}
+      <!-- ========== section end ========== -->
+
+      <!-- ========== footer start =========== -->
+      <footer class="footer">
+        
+        <!-- end container -->
+      </footer>
+      <!-- ========== footer end =========== -->
+    </main>
+    <!-- ======== main-wrapper end =========== -->
+
+    <!-- ============ Theme Option Start ============= -->
+   
+    <div class="option-overlay"></div>
+    <div class="option-box">
+      <div class="option-header">
+        <div>
+          <h5>Theme Customizer</h5>
+          <p class="text-gray">Customize and Preview in Real time</p>
+        </div>
+        <button class="option-btn-close text-gray">
+          <i class="lni lni-close"></i>
+        </button>
+      </div>
+      <h6 class="mb-10">Sidebar</h6>
+      <ul class="mb-30">
+        <li><button class="leftSidebarButton active">Left Sidebar</button></li>
+        <li><button class="rightSidebarButton">Right Sidebar</button></li>
+      </ul>
+
+      <h6 class="mb-10">Theme</h6>
+      <ul class="d-flex flex-wrap align-items-center">
+        <li>
+          <button class="lightThemeButton active">
+            Light Theme + Sidebar 1
+          </button>
+        </li>
+        <li>
+          <button class="lightThemeButton2">Light Theme + Sidebar 2</button>
+        </li>
+        <li><button class="darkThemeButton">Dark Theme + Sidebar 1</button></li>
+        <li>
+          <button class="darkThemeButton2">Dark Theme + Sidebar 2</button>
+        </li>
+      </ul>
+
+      <div class="promo-box">
+        <h3>PlainAdmin Pro</h3>
+        <p>Get All Dashboards and 300+ UI Elements</p>
+        <a
+          href="https://plainadmin.com/pro"
+          target="_blank"
+          rel="nofollow"
+          class="main-btn primary-btn btn-hover"
+        >
+          Purchase Now
+        </a>
+      </div>
+    </div>
+    <!-- ============ Theme Option End ============= -->
+
+    <!-- ========= All Javascript files linkup ======== -->
+    <script src="{% static 'web/assets/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'web/assets/js/Chart.min.js' %}"></script>
+    <script src="{% static 'web/assets/js/apexcharts.min.js' %}"></script>
+    <script src="{% static 'web/assets/js/dynamic-pie-chart.js' %}"></script>
+    <script src="{% static 'web/assets/js/moment.min.js' %}"></script>
+    <script src="{% static 'web/assets/js/fullcalendar.js' %}"></script>
+    <script src="{% static 'web/assets/js/jvectormap.min.js' %}"></script>
+    <script src="{% static 'web/assets/js/world-merc.js' %}"></script>
+    <script src="{% static 'web/assets/js/polyfill.js' %}"></script>
+    <script src="{% static 'web/assets/js/quill.min.js' %}"></script>
+    <script src="{% static 'web/assets/js/vanilla-dataTables.min.js' %}"></script>
+    <script src="{% static 'web/assets/js/main.js' %}"></script>
+
+    <script>
+      // ======== jvectormap activation
+      var markers = [
+        { name: "Egypt", coords: [26.8206, 30.8025] },
+        { name: "Russia", coords: [61.524, 105.3188] },
+        { name: "Canada", coords: [56.1304, -106.3468] },
+        { name: "Greenland", coords: [71.7069, -42.6043] },
+        { name: "Brazil", coords: [-14.235, -51.9253] },
+      ];
+
+      var jvm = new jsVectorMap({
+        map: "world_merc",
+        selector: "#map",
+        zoomButtons: true,
+
+        regionStyle: {
+          initial: {
+            fill: "#d1d5db",
+          },
+        },
+
+        labels: {
+          markers: {
+            render: (marker) => marker.name,
+          },
+        },
+
+        markersSelectable: true,
+        selectedMarkers: markers.map((marker, index) => {
+          var name = marker.name;
+
+          if (name === "Russia" || name === "Brazil") {
+            return index;
+          }
+        }),
+        markers: markers,
+        markerStyle: {
+          initial: { fill: "#4A6CF7" },
+          selected: { fill: "#ff5050" },
+        },
+        markerLabelStyle: {
+          initial: {
+            fontWeight: 400,
+            fontSize: 14,
+          },
+        },
+      });
+      // ====== calendar activation
+      document.addEventListener("DOMContentLoaded", function () {
+        var calendarMiniEl = document.getElementById("calendar-mini");
+        var calendarMini = new FullCalendar.Calendar(calendarMiniEl, {
+          initialView: "dayGridMonth",
+          headerToolbar: {
+            end: "today prev,next",
+          },
+        });
+        calendarMini.render();
+      });
+
+      // =========== chart one start
+      const ctx1 = document.getElementById("Chart1").getContext("2d");
+      const chart1 = new Chart(ctx1, {
+        // The type of chart we want to create
+        type: "line", // also try bar or other graph types
+
+        // The data for our dataset
+        data: {
+          labels: [
+            "Jan",
+            "Fab",
+            "Mar",
+            "Apr",
+            "May",
+            "Jun",
+            "Jul",
+            "Aug",
+            "Sep",
+            "Oct",
+            "Nov",
+            "Dec",
+          ],
+          // Information about the dataset
+          datasets: [
+            {
+              label: "",
+              backgroundColor: "transparent",
+              borderColor: "#4A6CF7",
+              data: [
+                600, 800, 750, 880, 940, 880, 900, 770, 920, 890, 976, 1100,
+              ],
+              pointBackgroundColor: "transparent",
+              pointHoverBackgroundColor: "#4A6CF7",
+              pointBorderColor: "transparent",
+              pointHoverBorderColor: "#fff",
+              pointHoverBorderWidth: 5,
+              pointBorderWidth: 5,
+              pointRadius: 8,
+              pointHoverRadius: 8,
+            },
+          ],
+        },
+
+        // Configuration options
+        defaultFontFamily: "Inter",
+        options: {
+          tooltips: {
+            callbacks: {
+              labelColor: function (tooltipItem, chart) {
+                return {
+                  backgroundColor: "#ffffff",
+                };
+              },
+            },
+            intersect: false,
+            backgroundColor: "#f9f9f9",
+            titleFontFamily: "Inter",
+            titleFontColor: "#8F92A1",
+            titleFontColor: "#8F92A1",
+            titleFontSize: 12,
+            bodyFontFamily: "Inter",
+            bodyFontColor: "#171717",
+            bodyFontStyle: "bold",
+            bodyFontSize: 16,
+            multiKeyBackground: "transparent",
+            displayColors: false,
+            xPadding: 30,
+            yPadding: 10,
+            bodyAlign: "center",
+            titleAlign: "center",
+          },
+
+          title: {
+            display: false,
+          },
+          legend: {
+            display: false,
+          },
+
+          scales: {
+            yAxes: [
+              {
+                gridLines: {
+                  display: false,
+                  drawTicks: false,
+                  drawBorder: false,
+                },
+                ticks: {
+                  padding: 35,
+                  max: 1200,
+                  min: 500,
+                },
+              },
+            ],
+            xAxes: [
+              {
+                gridLines: {
+                  drawBorder: false,
+                  color: "rgba(143, 146, 161, .1)",
+                  zeroLineColor: "rgba(143, 146, 161, .1)",
+                },
+                ticks: {
+                  padding: 20,
+                },
+              },
+            ],
+          },
+        },
+      });
+
+      // =========== chart one end
+
+      // =========== chart two start
+      const ctx2 = document.getElementById("Chart2").getContext("2d");
+      const chart2 = new Chart(ctx2, {
+        // The type of chart we want to create
+        type: "bar", // also try bar or other graph types
+        // The data for our dataset
+        data: {
+          labels: [
+            "Jan",
+            "Fab",
+            "Mar",
+            "Apr",
+            "May",
+            "Jun",
+            "Jul",
+            "Aug",
+            "Sep",
+            "Oct",
+            "Nov",
+            "Dec",
+          ],
+          // Information about the dataset
+          datasets: [
+            {
+              label: "",
+              backgroundColor: "#4A6CF7",
+              barThickness: 6,
+              maxBarThickness: 8,
+              data: [
+                600, 700, 1000, 700, 650, 800, 690, 740, 720, 1120, 876, 900,
+              ],
+            },
+          ],
+        },
+        // Configuration options
+        options: {
+          borderColor: "#F3F6F8",
+          borderWidth: 15,
+          backgroundColor: "#F3F6F8",
+          tooltips: {
+            callbacks: {
+              labelColor: function (tooltipItem, chart) {
+                return {
+                  backgroundColor: "rgba(104, 110, 255, .0)",
+                };
+              },
+            },
+            backgroundColor: "#F3F6F8",
+            titleFontColor: "#8F92A1",
+            titleFontSize: 12,
+            bodyFontColor: "#171717",
+            bodyFontStyle: "bold",
+            bodyFontSize: 16,
+            multiKeyBackground: "transparent",
+            displayColors: false,
+            xPadding: 30,
+            yPadding: 10,
+            bodyAlign: "center",
+            titleAlign: "center",
+          },
+
+          title: {
+            display: false,
+          },
+          legend: {
+            display: false,
+          },
+
+          scales: {
+            yAxes: [
+              {
+                gridLines: {
+                  display: false,
+                  drawTicks: false,
+                  drawBorder: false,
+                },
+                ticks: {
+                  padding: 35,
+                  max: 1200,
+                  min: 0,
+                },
+              },
+            ],
+            xAxes: [
+              {
+                gridLines: {
+                  display: false,
+                  drawBorder: false,
+                  color: "rgba(143, 146, 161, .1)",
+                  zeroLineColor: "rgba(143, 146, 161, .1)",
+                },
+                ticks: {
+                  padding: 20,
+                },
+              },
+            ],
+          },
+        },
+      });
+      // =========== chart two end
+
+      // =========== chart three start
+      const ctx3 = document.getElementById("Chart3").getContext("2d");
+      const chart3 = new Chart(ctx3, {
+        // The type of chart we want to create
+        type: "line", // also try bar or other graph types
+
+        // The data for our dataset
+        data: {
+          labels: [
+            "Jan",
+            "Fab",
+            "Mar",
+            "Apr",
+            "May",
+            "Jun",
+            "Jul",
+            "Aug",
+            "Sep",
+            "Oct",
+            "Nov",
+            "Dec",
+          ],
+          // Information about the dataset
+          datasets: [
+            {
+              label: "Revenue",
+              backgroundColor: "transparent",
+              borderColor: "#4a6cf7",
+              data: [80, 120, 110, 100, 130, 150, 115, 145, 140, 130, 160, 210],
+              pointBackgroundColor: "transparent",
+              pointHoverBackgroundColor: "#4a6cf7",
+              pointBorderColor: "transparent",
+              pointHoverBorderColor: "#fff",
+              pointHoverBorderWidth: 3,
+              pointBorderWidth: 5,
+              pointRadius: 5,
+              pointHoverRadius: 8,
+            },
+            {
+              label: "Profit",
+              backgroundColor: "transparent",
+              borderColor: "#9b51e0",
+              data: [
+                120, 160, 150, 140, 165, 210, 135, 155, 170, 140, 130, 200,
+              ],
+              pointBackgroundColor: "transparent",
+              pointHoverBackgroundColor: "#9b51e0",
+              pointBorderColor: "transparent",
+              pointHoverBorderColor: "#fff",
+              pointHoverBorderWidth: 3,
+              pointBorderWidth: 5,
+              pointRadius: 5,
+              pointHoverRadius: 8,
+            },
+            {
+              label: "Order",
+              backgroundColor: "transparent",
+              borderColor: "#f2994a",
+              data: [180, 110, 140, 135, 100, 90, 145, 115, 100, 110, 115, 150],
+              pointBackgroundColor: "transparent",
+              pointHoverBackgroundColor: "#f2994a",
+              pointBorderColor: "transparent",
+              pointHoverBorderColor: "#fff",
+              pointHoverBorderWidth: 3,
+              pointBorderWidth: 5,
+              pointRadius: 5,
+              pointHoverRadius: 8,
+            },
+          ],
+        },
+
+        // Configuration options
+        options: {
+          tooltips: {
+            intersect: false,
+            backgroundColor: "#fbfbfb",
+            titleFontColor: "#8F92A1",
+            titleFontSize: 16,
+            titleFontFamily: "Inter",
+            titleFontStyle: "400",
+            bodyFontFamily: "Inter",
+            bodyFontColor: "#171717",
+            bodyFontSize: 16,
+            multiKeyBackground: "transparent",
+            displayColors: false,
+            xPadding: 30,
+            yPadding: 15,
+            borderColor: "rgba(143, 146, 161, .1)",
+            borderWidth: 1,
+            title: false,
+          },
+
+          title: {
+            display: false,
+          },
+
+          layout: {
+            padding: {
+              top: 0,
+            },
+          },
+
+          legend: false,
+
+          scales: {
+            yAxes: [
+              {
+                gridLines: {
+                  display: false,
+                  drawTicks: false,
+                  drawBorder: false,
+                },
+                ticks: {
+                  padding: 35,
+                  max: 300,
+                  min: 50,
+                },
+              },
+            ],
+            xAxes: [
+              {
+                gridLines: {
+                  drawBorder: false,
+                  color: "rgba(143, 146, 161, .1)",
+                  zeroLineColor: "rgba(143, 146, 161, .1)",
+                },
+                ticks: {
+                  padding: 20,
+                },
+              },
+            ],
+          },
+        },
+      });
+      // =========== chart three end
+
+      // ================== chart four start
+      const ctx4 = document.getElementById("Chart4").getContext("2d");
+      const chart4 = new Chart(ctx4, {
+        // The type of chart we want to create
+        type: "bar", // also try bar or other graph types
+        // The data for our dataset
+        data: {
+          labels: ["Jan", "Fab", "Mar", "Apr", "May", "Jun"],
+          // Information about the dataset
+          datasets: [
+            {
+              label: "",
+              backgroundColor: "#4A6CF7",
+              barThickness: "flex",
+              maxBarThickness: 8,
+              data: [600, 700, 1000, 700, 650, 800],
+            },
+            {
+              label: "",
+              backgroundColor: "#d50100",
+              barThickness: "flex",
+              maxBarThickness: 8,
+              data: [690, 740, 720, 1120, 876, 900],
+            },
+          ],
+        },
+        // Configuration options
+        options: {
+          borderColor: "#F3F6F8",
+          borderWidth: 15,
+          backgroundColor: "#F3F6F8",
+          tooltips: {
+            callbacks: {
+              labelColor: function (tooltipItem, chart) {
+                return {
+                  backgroundColor: "rgba(104, 110, 255, .0)",
+                };
+              },
+            },
+            backgroundColor: "#F3F6F8",
+            titleFontColor: "#8F92A1",
+            titleFontSize: 12,
+            bodyFontColor: "#171717",
+            bodyFontStyle: "bold",
+            bodyFontSize: 16,
+            multiKeyBackground: "transparent",
+            displayColors: false,
+            xPadding: 30,
+            yPadding: 10,
+            bodyAlign: "center",
+            titleAlign: "center",
+          },
+
+          title: {
+            display: false,
+          },
+          legend: {
+            display: false,
+          },
+
+          scales: {
+            yAxes: [
+              {
+                gridLines: {
+                  display: false,
+                  drawTicks: false,
+                  drawBorder: false,
+                },
+                ticks: {
+                  padding: 35,
+                  max: 1200,
+                  min: 0,
+                },
+              },
+            ],
+            xAxes: [
+              {
+                gridLines: {
+                  display: false,
+                  drawBorder: false,
+                  color: "rgba(143, 146, 161, .1)",
+                  zeroLineColor: "rgba(143, 146, 161, .1)",
+                },
+                ticks: {
+                  padding: 20,
+                },
+              },
+            ],
+          },
+        },
+      });
+      // =========== chart four end
+    </script>
+  </body>
+</html>
